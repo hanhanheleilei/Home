@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魔改阿里云盘登录页</title>
+  <title>憨家服务 | 登录</title>
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <img src="logo.svg" class="logo" alt="">
-
   <div class="login-app">
     <!-- 选择登录方式部分 -->
     <div class="login-header" onclick="checkRadio()">
@@ -17,8 +15,6 @@
       <label for="message" class="m-btn">短信登录</label>
       <input type="radio" name="login-opt" id="username">
       <label for="username" class="u-btn">账号登录</label>
-      <input type="radio" name="login-opt" id="qrcode">
-      <label for="qrcode" class="q-btn">扫码登录</label>
     </div>
     <!-- 登录表单部分 -->
     <div class="login-body">
@@ -37,12 +33,6 @@
           <input type="text" placeholder="请输入手机号码">
           <input type="text" placeholder="请输入验证码">
           <button class="login-btn">登录</button>
-        </form>
-        <!-- 扫码登录表单 -->
-        <form action="" class="q-form">
-          <div class="qrcode">
-            <img src="qrcode.png" alt="">
-          </div>
         </form>
         <!-- <form-append></form-append> -->
       </div>
