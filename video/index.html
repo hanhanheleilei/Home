@@ -1,29 +1,70 @@
-<html>
-  <head>
-    <title>何必是个憨憨 | 奇怪的播放器</title>
-    <meta name="viewport" content="width=device-width">
-  </head>
-    <body>
-      <video controls="" autoplay="" name="media">
-
-        <source src="https://pl.taptap.com/hls/lt164MOWowgF1TBAZnwq56t_KhFY/2010.m3u8?sign=c6b98aa77aa3e4d3cd321cf15528fc444c2bd439&ts=1659222077" type="video/mp4">
-      </video>
-  </body>
+<!--
+Share：大碗绿豆沙
+Link：https://b23.tv/WdFTbnF
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分享弹窗</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+</head>
 <body>
-      <video controls="" autoplay="" name="media">
+  <button class="view-modal">点击分享</button>
+  <div class="popup">
+    <header>
+      <span>分享一下</span>
+      <div class="close"><i class="uil uil-times"></i></div>
+    </header>
+    <div class="content">
+      <p>将此文章分享到：</p>
+      <ul class="icons">
+        <a href="#"><i class="fab fa-qq"></i></a>
+        <a href="#"><i class="fab fa-weixin"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+      </ul>
+      <p>复制链接：</p>
+      <div class="field">
+        <i class="url-icon uil uil-link"></i>
+        <input type="text" readonly value="https://b23.tv/WdFTbnF">
+        <button>Copy</button>
+      </div>
+    </div>
+  </div>
 
-        <source src="https://video-pt.xdcdn.net/video/2021/02/20/c8adc3040bdd078500ab3b80196d69b1/3c437d74b91d91fc-1080p.mp4" type="video/mp4">
-      </video>
-  </body>
-<body>
-      <video controls="" autoplay="" name="media">
+  <script>
+    const viewBtn = document.querySelector(".view-modal"),
+    popup = document.querySelector(".popup"),
+    close = popup.querySelector(".close"),
+    field = popup.querySelector(".field"),
+    input = field.querySelector("input"),
+    copy = field.querySelector("button");
 
-        <source src="https://pl.taptap.com/hls/luMmDfvAOLYDum2oeMjobzQdCatx/2008.m3u8?sign=0fde1ee1a3ece6e7303575d8aa599569c433cd51&ts=1659223070" type="video/mp4">
-      </video>
-  </body>
+    viewBtn.onclick = ()=>{
+      popup.classList.toggle("show");
+    }
+    close.onclick = ()=>{
+      viewBtn.click();
+    }
+
+    copy.onclick = ()=>{
+      input.select(); //select input value
+      if(document.execCommand("copy")){ //if the selected text copy
+        field.classList.add("active");
+        copy.innerText = "Copied";
+        setTimeout(()=>{
+          window.getSelection().removeAllRanges(); //remove selection from document
+          field.classList.remove("active");
+          copy.innerText = "Copy";
+        }, 3000);
+      }
+    }
+  </script>
+
+</body>
 </html>
-https://video-pt.xdcdn.net/video/2021/02/20/c8adc3040bdd078500ab3b80196d69b1/3c437d74b91d91fc-1080p.mp4
-
-
-
-
