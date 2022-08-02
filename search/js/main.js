@@ -1,11 +1,5 @@
 //加载完成后执行
 window.addEventListener('load', function () {
-    //载入动画
-    $('#loading-box').attr('class', 'loaded');
-    $('#bg').css("cssText", "transform: scale(1);filter: blur(0px);transition: ease 1.5s;");
-    $('#section').css("cssText", "opacity: 1;transition: ease 1.5s;");
-    $('.cover').css("cssText", "opacity: 1;transition: ease 1.5s;");
-
     //用户欢迎
     iziToast.settings({
         timeout: 3000,
@@ -24,7 +18,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         iziToast.show({
             title: hello,
-            message: '欢迎来到 Snavigation'
+            message: ' '
         });
     }, 800);
 
@@ -33,21 +27,21 @@ window.addEventListener('load', function () {
 //进入问候
 now = new Date(), hour = now.getHours()
 if (hour < 6) {
-    var hello = "凌晨好";
+    var hello = "凌晨好，记得下次别熬夜啦！";
 } else if (hour < 9) {
-    var hello = "早上好";
+    var hello = "早上好，起床了！";
 } else if (hour < 12) {
-    var hello = "上午好";
+    var hello = "上午好，摸鱼程序已启动";
 } else if (hour < 14) {
-    var hello = "中午好";
+    var hello = "中午好，干饭了食堂我来啦！";
 } else if (hour < 17) {
-    var hello = "下午好";
+    var hello = "下午好，打卡下班";
 } else if (hour < 19) {
-    var hello = "傍晚好";
+    var hello = "傍晚好，要看电影吗？";
 } else if (hour < 22) {
-    var hello = "晚上好";
+    var hello = "晚上好，不早了快睡吧晚安";
 } else {
-    var hello = "夜深了";
+    var hello = "夜深了，睡不着吗？";
 }
 
 //获取时间
@@ -76,7 +70,6 @@ function time() {
 
 //获取天气
 //每日限量 100 次
-//请前往 https://www.tianqiapi.com/index/doc?version=v6 申请（免费）
 fetch('https://yiketianqi.com/api?unescape=1&version=v6&appid=43986679&appsecret=TksqGZT7')
     .then(response => response.json())
     .then(data => {
@@ -87,44 +80,10 @@ fetch('https://yiketianqi.com/api?unescape=1&version=v6&appid=43986679&appsecret
     })
     .catch(console.error)
 
-//火狐浏览器独立样式
-if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
-    var head = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.href = './css/firefox.css';
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    head.appendChild(link);
-    window.addEventListener('load', function () {
-        setTimeout(function () {
-            iziToast.show({
-                timeout: 8000,
-                message: '您正在使用火狐浏览器，部分功能可能不支持'
-            });
-        }, 3800);
-    }, false)
-}
-
-//Tab书签页
-$(function () {
-    $(".mark .tab .tab-item").click(function () {
-        $(this).addClass("active").siblings().removeClass("active");
-        $(".products .mainCont").eq($(this).index()).css("display", "flex").siblings().css("display", "none");
-    })
-})
-
-//设置
-$(function () {
-    $(".set .tabs .tab-items").click(function () {
-        $(this).addClass("actives").siblings().removeClass("actives");
-        $(".productss .mainConts").eq($(this).index()).css("display", "flex").siblings().css("display", "none");
-    })
-})
-
-//点击搜索按钮
+//搜索按钮
 $(".sou-button").click(function () {
     iziToast.show({
-        message: '问题未修复，请点击键盘上的确认键以搜索',
+        message: '行为异常#10086',
     });
     // $('#search-submit').click();
 });
