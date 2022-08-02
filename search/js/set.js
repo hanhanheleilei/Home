@@ -1,18 +1,3 @@
-/*
-作者:D.Young
-主页：https://yyv.me/
-github：https://github.com/5iux/sou
-日期：2019-07-26
-版权所有，请勿删除
-========================================
-由 yeetime 修改
-github：https://github.com/yeetime/sou2
-日期：2019-12-13
-========================================
-由 imsyy 二次修改
-github：https://github.com/imsyy/sou2
-日期：2022-03-10
-*/
 
 // 默认搜索引擎列表
 var se_list_preinstall = {
@@ -196,16 +181,10 @@ function setBgImgInit() {
     switch (bg_img["type"]) {
         case "1":
             var pictures = new Array();
-            pictures[0] = './img/background1.webp';
-            pictures[1] = './img/background2.webp';
-            pictures[2] = './img/background3.webp';
-            pictures[3] = './img/background4.webp';
-            pictures[4] = './img/background5.webp';
-            pictures[5] = './img/background6.webp';
-            pictures[6] = './img/background7.webp';
-            pictures[7] = './img/background8.webp';
-            pictures[8] = './img/background9.webp';
-            pictures[9] = './img/background10.webp';
+            pictures[1] = './img/background3.webp';
+            pictures[2] = './img/background7.webp';
+            pictures[3] = './img/background9.webp';
+            pictures[4] = './img/background10.webp';
             var rd = Math.floor(Math.random() * 10);
             $('#bg').attr('src', pictures[rd]) //随机默认壁纸
             break;
@@ -213,12 +192,6 @@ function setBgImgInit() {
             $('#bg').attr('src', 'https://api.dujin.org/bing/1920.php') //必应每日
             break;
         case "3":
-            $('#bg').attr('src', 'https://api.ixiaowai.cn/gqapi/gqapi.php') //随机风景
-            break;
-        case "4":
-            $('#bg').attr('src', 'https://api.ixiaowai.cn/api/api.php') //随机二次元
-            break;
-        case "5":
             $('#bg').attr('src', bg_img["path"]) //自定义
             break;
     }
@@ -1122,88 +1095,6 @@ $(document).ready(function () {
             setBgImg(bg_img);
             iziToast.show({
                 message: '自定义壁纸设置成功，刷新生效',
-            });
-        }
-    });
-
-    // 我的数据导出
-    $("#my_data_out").click(function () {
-        var cookies = Cookies.get();
-        var json = JSON.stringify(cookies);
-        download("Snavigation-back-up-" + $.now() + ".json", json);
-        iziToast.show({
-            timeout: 2000,
-            message: '已导出备份文件至下载目录'
-        });
-    });
-
-    // 我的数据导入 点击触发文件选择
-    $("#my_data_in").click(function () {
-        $("#my_data_file").click();
-    });
-
-    // 选择文件后读取文件内容
-    $("#my_data_file").change(function () {
-        var selectedFile = document.getElementById('my_data_file').files[0];
-        //var name = selectedFile.name;//读取选中文件的文件名
-        //var size = selectedFile.size;//读取选中文件的大小
-        //console.log("文件名:"+name+" 大小:"+size);
-
-        var reader = new FileReader(); //这是核心,读取操作就是由它完成.
-        reader.readAsText(selectedFile); //读取文件的内容,也可以读取文件的URL
-        reader.onload = function () {
-            //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-            //console.log(this.result);
-
-            // json 格式校验
-            var mydata;
-            try {
-                mydata = JSON.parse(this.result);
-            } catch (e) {
-                iziToast.show({
-                    timeout: 2000,
-                    message: '数据解析异常'
-                });
-                return;
-            }
-            if (typeof mydata != 'object') {
-                iziToast.show({
-                    timeout: 2000,
-                    message: '数据格式错误'
-                });
-                return;
-            }
-
-            iziToast.show({
-                timeout: 8000,
-                message: '当前数据将会被覆盖！是否继续导入？',
-                buttons: [
-                    ['<button>确认</button>', function (instance, toast) {
-                        for (var key in mydata) {
-                            Cookies.set(key, mydata[key], {
-                                expires: 36500
-                            });
-                        }
-                        instance.hide({
-                            transitionOut: 'flipOutX',
-                        }, toast, 'buttonName');
-                        iziToast.show({
-                            timeout: 2000,
-                            message: '导入成功'
-                        });
-                        setTimeout(function () {
-                            window.location.reload()
-                        }, 1000);
-                    }, true],
-                    ['<button>取消</button>', function (instance, toast) {
-                        instance.hide({
-                            transitionOut: 'flipOutX',
-                        }, toast, 'buttonName');
-                        setTimeout(function () {
-                            window.location.reload()
-                        }, 1000);
-                    }]
-                ]
             });
         }
     });
