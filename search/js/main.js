@@ -142,20 +142,17 @@ color: rgb(244,167,89);
 var styleContent = `
 color: rgb(30,152,255);
 `
-var title1 = 'Snavigation'
-var title2 = `
- _____ __  __  _______     ____     __
-|_   _|  \\/  |/ ____\\ \\   / /\\ \\   / /
-  | | | \\  / | (___  \\ \\_/ /  \\ \\_/ / 
-  | | | |\\/| |\\___ \\  \\   /    \\   /  
- _| |_| |  | |____) |  | |      | |   
-|_____|_|  |_|_____/   |_|      |_|                                                     
+var title1 = '搜索 | 心动一夏'
+var title2 = `    .___              
+___  ___ __| _/__.__.___  ___
+\  \/  // __ <   |  |\  \/  /
+ >    </ /_/ |\___  | >    < 
+/__/\_ \____ |/ ____|/__/\_ \
+      \/    \/\/           \/                                           
 `
 var content = `
-版 本 号：1.0
-更新日期：2022-03-22
+版 本 号：0.46
+更新日期：2022-07-22
 
-Github:  https://github.com/imsyy/Snavigation
-`
 console.log(`%c${title1} %c${title2}
 %c${content}`, styleTitle1, styleTitle2, styleContent)
