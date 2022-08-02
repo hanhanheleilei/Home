@@ -1,6 +1,4 @@
-//加载完成后执行
-window.addEventListener('load', function () {
-    //用户欢迎
+//用户欢迎
     iziToast.settings({
         timeout: 3000,
         backgroundColor: '#ffffff40',
