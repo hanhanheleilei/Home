@@ -1,18 +1,3 @@
-/*
-作者:D.Young
-主页：https://yyv.me/
-github：https://github.com/5iux/sou
-日期：2019-07-26
-版权所有，请勿删除
-========================================
-由 yeetime 修改
-github：https://github.com/yeetime/sou2
-日期：2019-12-13
-========================================
-由 imsyy 二次修改
-github：https://github.com/imsyy/sou2
-日期：2022-03-10
-*/
 
 // 默认搜索引擎列表
 var se_list_preinstall = {
@@ -20,7 +5,7 @@ var se_list_preinstall = {
         id: 1,
         title: "百度",
         url: "https://www.baidu.com/s",
-        name: "wd",
+        name: "wd"
         icon: "iconfont icon-baidu",
     },
     '2': {
