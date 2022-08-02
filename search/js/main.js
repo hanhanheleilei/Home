@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         iziToast.show({
             title: hello,
-            message: '欢迎来到 Snavigation'
+            message: ' '
         });
     }, 800);
 
@@ -33,21 +33,21 @@ window.addEventListener('load', function () {
 //进入问候
 now = new Date(), hour = now.getHours()
 if (hour < 6) {
-    var hello = "凌晨好";
+    var hello = "凌晨好,起床了！";
 } else if (hour < 9) {
-    var hello = "早上好";
+    var hello = "早上好，听说附近有一家的早餐很好吃";
 } else if (hour < 12) {
-    var hello = "上午好";
+    var hello = "上午好，启动摸鱼模式";
 } else if (hour < 14) {
-    var hello = "中午好";
+    var hello = "中午好，干饭干饭食堂我来了";
 } else if (hour < 17) {
-    var hello = "下午好";
+    var hello = "下午好，还有一会儿就下班了";
 } else if (hour < 19) {
-    var hello = "傍晚好";
+    var hello = "傍晚好，晚餐吃点什么呢？";
 } else if (hour < 22) {
-    var hello = "晚上好";
+    var hello = "晚上好，睡觉了明天见";
 } else {
-    var hello = "夜深了";
+    var hello = "夜深了，还没忙完吗?";
 }
 
 //获取时间
