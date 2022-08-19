@@ -145,10 +145,8 @@ class="sub">憨家服务</span></a>
 <div class="vp-head-search-wrap">
 <div>
 <div class="vp-head-search-box">
-<div class="vp-head-search-input">
-<form target="_blank" method="get" action="https://so.toutiao.com/search?dvpf=pc&source=input&keyword=%">
+<form target="_blank" method="get" action="https://so.baidu.com/s?">
 <input type="text" placeholder="请输入搜索内容" name="word" class="text" />
-<input type="submit" value="搜索" class="search">
 </form>
 </div>
 
@@ -2167,48 +2165,91 @@ var siteCode = navigator.userAgent.match(/(VivoSpace|Android|ios|iPhone|iPod)/i)
 hm.src = '//hm.baidu.com/hm.js?' + siteCode;
 hm.async = true;
 var s = document.getElementsByTagName('script')[0];
+
 s.parentNode.insertBefore(hm, s);
+
 })();
+
 (function () {
+
 var cid = $$.getQueryString('cid');
+
 if (cid) {
+
 $$.setCookie({
+
 name: 'externalCID',
+
 value: cid,
+
 domain: '.vivo.com.cn'
+
 });
+
 }
+
 })();
+
 </script>
+
 <script>
+
 var s = document.createElement('script');
+
 s.onload = s.onreadystatechange = function () {
+
 if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
+
 s.onload = s.onreadystatechange = null;
+
 window.VMonitor && window.VMonitor.init({id:"166",enableSPA:true,reportRender:false,isProd: true});
+
 }
+
 };
+
 s.src = '//sentinelapi.vivo.com.cn/jssdk/vmonitor.min.js';
+
 document.head.appendChild(s);
+
 </script>
+
 <script src="//wwwstatic.vivo.com.cn/vivoportal/web/dist/js/common/vivo-share_d27e70c.js" crossorigin="anonymous" async defer></script>
+
 <script>
+
 var globalMiddleSrc = `@font-face {
+
 font-family: 'VIVO-FONT-WEB-BOLD';
+
 src: url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/8251bbe50a1d654cfe1a4c27d2710193.woff2") format('woff2'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/337701a1771de668668b13dc74d3376d.eot") format('embedded-opentype'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/e0d6e91f62ab942c138f15143a5346f4.woff") format('woff'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/56d970eed1cdefd33ade958fe0435610.ttf") format('truetype'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/57b5697a04c9b2fbe0a72f3ab9a4a8be.svg") format('svg');
+
 font-display: swap;
+
 }`;
+
 var globalNorSrc = `@font-face {
+
 font-family: 'VIVO-FONT-WEB';
+
 src: url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/ae301961b83a1d9ea69bb950ea96c9bd.woff2") format('woff2'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/18433653241b78933b3aafeb9a2ae991.eot") format('embedded-opentype'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/4c74b2c83c9466bdb272d0430666d37d.woff") format('woff'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/87fe8be1768bd6ecc728e6b2c39bbcc0.ttf") format('truetype'),url("https://wwwstatic.vivo.com.cn/vivoportal/files/image/font/20220523/2f3301ce0bd7eee055decda008298ee6.svg") format('svg');
+
 font-display: swap;
+
 }`;
+
 $(document).ready(function(){
+
 var newStyle = document.createElement('style');
+
 newStyle.appendChild(document.createTextNode(globalMiddleSrc));
+
 newStyle.appendChild(document.createTextNode(globalNorSrc));
+
 document.head.appendChild(newStyle);
+
 })
+
 </script>
 </body>
 </html>
