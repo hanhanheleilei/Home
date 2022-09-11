@@ -154,6 +154,196 @@ officialWebFun.backTop();
                     <div class="news">
 
 
+<body>
+  <canvas id="canvas" style="background: #333;"></canvas>
+</body>
+<script>
+  // 圆角矩形
+  CanvasRenderingContext2D.prototype.roundRect = function (left, top, width, height, r) {
+    const pi = Math.PI;
+    this.beginPath();
+    this.arc(left + r, top + r, r, -pi, -pi / 2);
+    this.arc(left + width - r, top + r, r, -pi / 2, 0);
+    this.arc(left + width - r, top + height - r, r, 0, pi / 2);
+    this.arc(left + r, top + height - r, r, pi / 2, pi);
+    this.closePath();
+  }
+
+  class Barrage {
+    constructor(id) {
+      this.scale = 2;  // 缩放倍数，1会糊
+      this.canvas = document.getElementById(id);
+      this.canvas.width = this.w = document.body.offsetWidth * this.scale;
+      this.canvas.height = this.h = 220 * this.scale;
+      this.canvas.style.width = this.w / this.scale + 'px';
+
+      this.ctx = this.canvas.getContext('2d');
+
+      this.style = { // 弹幕样式
+        height: 27 * this.scale,  // 弹幕高度
+        fontSize: 14 * this.scale,  // 字体大小
+        marginBottom: 4 * this.scale,  // 弹幕 margin-bottom
+        paddingX: 8 * this.scale,  // 弹幕 padding x
+        avatarWidth: 18 * this.scale,  // 头像宽度
+      }
+      this.ctx.font = this.style.fontSize + 'px PingFangSC-Regular';
+
+      this.barrageList = [];  // 弹幕列表
+      this.rowStatusList = [];  // 记录每行是否可插入，防止重叠。 行号为可插入 false为不可插入
+
+      let rowLength = Math.floor(this.h / (this.style.height + this.style.marginBottom));
+      for (var i = 0; i < rowLength; i++) {
+        this.rowStatusList.push(i)
+      }
+    }
+
+    shoot(value) {
+      const { height, avatarWidth, fontSize, marginBottom, paddingX } = this.style;
+      const { img, t1, t2 } = value;
+      let row = this.getRow();
+      let color = this.getColor();
+      let offset = this.getOffset();
+      let w_0 = paddingX;  // 头像开始位置
+      let w_1 = w_0 + avatarWidth + 8;  // t1文字开始位置
+      let w_2 = w_1 + Math.ceil(this.ctx.measureText(t1).width) + 8;  // t2文字开始位置
+      let w_3 = w_2 + Math.ceil(this.ctx.measureText(t2).width) + paddingX;  // 弹幕总长度
+
+      let barrage = {
+        value,
+        color,
+        row,
+        top: row * (height + marginBottom),
+        left: this.w,
+        offset,
+        width: [w_0, w_1, w_2, w_3],
+      }
+
+      this.barrageList.push(barrage);
+    }
+
+    draw() {
+      if (!!this.barrageList.length) {
+        this.ctx.clearRect(0, 0, this.w, this.h);
+        for (let i = 0, barrage; barrage = this.barrageList[i]; i++) {
+          // 弹幕滚出屏幕，从数组中移除
+          if (barrage.left + barrage.width[3] <= 0) {
+            this.barrageList.splice(i, 1);
+            i--;
+            continue;
+          }
+
+          // 弹幕完全滚入屏幕，当前行可插入
+          if (!barrage.rowFlag) {
+            if ((barrage.left + barrage.width[3]) < this.w) {  // 
+              this.rowStatusList[barrage.row] = barrage.row;
+              barrage.rowFlag = true;
+            }
+          }
+
+          barrage.left -= barrage.offset;
+          this.drawBarrage(barrage);
+        }
+      }
+      requestAnimationFrame(this.draw.bind(this));
+    }
+
+    drawBarrage(barrage) {
+      const { height, avatarWidth, fontSize, marginBottom, paddingX } = this.style;
+      const {
+        value: { img, t1, t2 },
+        color,
+        row,
+        left,
+        top,
+        offset,
+        width,
+      } = barrage;
+
+      // 画框子
+      this.ctx.roundRect(left, top, width[3], height, height / 2)
+      this.ctx.fillStyle = 'rgba(255,255,255,0.50)';
+      this.ctx.fill();
+      // 画头像
+      this.ctx.drawImage(img, 0, 0, img.width, img.height, left + width[0], top + (height - avatarWidth) / 2, avatarWidth, avatarWidth);
+      // 画黑色的字
+      this.ctx.fillStyle = color;
+      this.ctx.fillText(t1, left + width[1], top + fontSize + 8);
+      // 画红色的字
+      this.ctx.fillStyle = '#F24949';
+      this.ctx.fillText(t2, left + width[2], top + fontSize + 8);
+    }
+
+    getRow() {
+      let emptyRowList = this.rowStatusList.filter(d => /\d/.test(d));  // 找出可插入行
+      let row = emptyRowList[Math.floor(Math.random() * emptyRowList.length)];  // 随机选一行
+      this.rowStatusList[row] = false;
+      return row;
+    }
+
+    haveEmptyRow() {
+      let emptyRowList = this.rowStatusList.filter(d => /\d/.test(d));  // 找出可插入行
+      return !!emptyRowList.length;
+    }
+
+    getColor() {
+      return '#000000';
+    }
+
+    getOffset() {
+      return 1 * this.scale;
+    }
+  }
+
+  var list = [
+    {
+      avatar: 'https://pic.stackoverflow.wiki/uploadImages/2409/894c/a620/242e/eb0c/8eda/a901/1c0/2022/09/11/19/09/9ec8d927-df9d-4390-86aa-0ecd26f63477.png',
+      t1: '今天做了笔记 — 李梓萌',
+      t2: '3组',
+    },
+    {
+      avatar: 'https://pic.stackoverflow.wiki/uploadImages/2409/894c/a620/242e/eb0c/8eda/a901/1c0/2022/09/11/19/16/77495bba-77ab-4b85-bc8e-3ddda732703b.png',
+      t1: '今天上课认真做好了笔记 — 罗文',
+      t2: '3组',
+    },
+    {
+      avatar: 'https://pic.stackoverflow.wiki/uploadImages/2409/894c/a620/242e/eb0c/8eda/a901/1c0/2022/09/11/19/17/98c594f8-9f32-4630-9e18-774643827c50.png',
+      t1: '今天上语文课认真做了笔记 — 杨涛',
+      t2: '3组',
+    },
+    {
+      avatar: 'https://image.duliday.com/living-cost/20200317/4cd9f827d439f7a1227501f9b09cd1e8622417?roundPic/radius/66',
+      t1: '王**五 给 赵**六',
+      t2: '3组',
+    },
+  ]
+
+  // 循环插入发射弹幕
+  var index = 0;
+  var shootBarrage = function (list) {
+    setTimeout(function () {
+      if (barrage.haveEmptyRow()) {
+        var data = list[index++] || list[(index = 0) || index++];
+        var img = new Image();
+        img.setAttribute("crossOrigin", 'anonymous');
+        img.onload = function () {
+          barrage.shoot({
+            img,
+            t1: data.t1,
+            t2: data.t2,
+          });
+        }
+        img.src = data.avatar;
+      }
+      shootBarrage(list);
+    }, 1000)
+  }
+
+  var barrage = new Barrage('canvas');
+  barrage.draw();
+  shootBarrage(list)
+
+</script>
+
 
                         <div class="news-share">
                             <div class="download">
