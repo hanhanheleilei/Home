@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../assets/js/jquery-1.8.1.js"></script>
+</head>
+
+<body>
+
+    <div style="height: 800px;width: 800px;text-align: center;background-color: black;" id="main">
+
+    </div>
+
+    <script>
+        infos = ['说得对', '我人傻了', '这是一条弹幕', '前端太难了', '好烦']
+
+        setInterval(function() {
+            for (r in infos) {
+                //设置弹幕的样式和内容
+                info = $('<span></span>');
+                info.text(infos[r]);
+                info.attr("style", "margin-right:0px;margin-top:" + Math.random() * 35 + "%;position:absolute;color:white;");
+                //向弹幕显示区域添加弹幕
+                $('#main').append(info);
+                //设置动画
+                info.animate({
+                    left: 0
+                }, 8000, 'linear', function() {
+                    //动画完成后就删除
+                    $(this).remove();
+                });
+            }
+
+        }, 3000);
+    </script>
+</body>
+
+</html>
