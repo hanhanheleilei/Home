@@ -32,35 +32,7 @@ body{
 
 }
 
-/* 模糊背景图 */
 
-.bg{
-
-    /* 固定定位 */
-
-    position: fixed;
-
-    top: -40px;
-
-    right: -40px;
-
-    bottom: -40px;
-
-    left: -40px;
-
-    background: url(/mp3/cover/红模仿.jpg) no-repeat;
-
-    background-size: cover;
-
-    background-position: center;
-
-    /* 模糊滤镜 */
-
-    filter: blur(40px);
-
-    z-index: 1;
-
-}
 
 /* 半透明白色遮罩层 */
 
