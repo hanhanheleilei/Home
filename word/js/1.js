@@ -378,7 +378,7 @@ function selectTrack(flag){
 
         // 设置音频路径
 
-        audio.src='/mp3/'+cur_album+'.mp3';
+        audio.src='https://huanyoyo.github.io/mp3/'+cur_album+'.mp3';
 
         if(flag!=0){
 
