@@ -36,7 +36,7 @@ let albums=['把回忆拼好给你',''];
 
 // 歌曲信息数组
 
-let track_names=['hanjia music','hanjia music',''];
+let track_names=['hanjia music',''];
 
 // 定义变量
 
